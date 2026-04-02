@@ -1,0 +1,69 @@
+﻿---
+const today = new Date();
+---
+
+<footer>
+	<div class="footer-inner">
+		<div class="footer-brand">
+			<span class="logo-icon">LIVE</span>
+			<span>配信のミカタ</span>
+		</div>
+		<p class="footer-desc">Netflix・U-NEXT・Hulu・Amazon Prime…動画配信サービスの比較からYouTube・TikTok収益化まで徹底解説。</p>
+		<div class="footer-links">
+			<a href="/">ホーム</a>
+			<a href="/blog">記事一覧</a>
+			<a href="/about">当サイトについて</a>
+		</div>
+		<p class="copyright">&copy; {today.getFullYear()} 配信のミカタ All rights reserved.</p>
+		<p class="disclaimer">※当サイトはアフィリエイトプログラムに参加しています。</p>
+	</div>
+</footer>
+<style>
+	footer {
+		background: rgb(var(--gray-dark));
+		color: #9ca3af;
+		padding: 3em 1em;
+		margin-top: 3em;
+	}
+	.footer-inner {
+		max-width: 760px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.footer-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		font-weight: 700;
+		font-size: 1.1em;
+		color: white;
+		margin-bottom: 0.8em;
+	}
+	.logo-icon {
+		background: var(--accent-gradient);
+		color: white;
+		padding: 0.2em 0.5em;
+		border-radius: 8px;
+		font-size: 0.8em;
+		font-weight: 800;
+	}
+	.footer-desc {
+		font-size: 0.9em;
+		margin-bottom: 1.5em;
+	}
+	.footer-links {
+		display: flex;
+		justify-content: center;
+		gap: 1.5em;
+		margin-bottom: 1.5em;
+	}
+	.footer-links a {
+		color: #9ca3af;
+		font-size: 0.9em;
+		transition: color .2s;
+	}
+	.footer-links a:hover { color: white; }
+	.copyright { font-size: 0.85em; margin-bottom: 0.5em; }
+	.disclaimer { font-size: 0.75em; color: #6b7280; }
+</style>
+

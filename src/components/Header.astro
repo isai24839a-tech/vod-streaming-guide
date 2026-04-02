@@ -1,0 +1,104 @@
+﻿---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<a href="/" class="logo">
+			<span class="logo-icon">LIVE</span>
+			<span class="logo-text">{SITE_TITLE}</span>
+		</a>
+		<div class="internal-links">
+			<HeaderLink href="/">ホーム</HeaderLink>
+			<HeaderLink href="/blog">記事一覧</HeaderLink>
+			<HeaderLink href="/about">当サイトについて</HeaderLink>
+		</div>
+		<button class="menu-btn" aria-label="メニュー" onclick="document.querySelector('.internal-links').classList.toggle('open')">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+		</button>
+	</nav>
+</header>
+<style>
+	header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(255,255,255,0.95);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid #e5e7eb;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 760px;
+		margin: 0 auto;
+		padding: 0.6em 1em;
+	}
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		font-weight: 700;
+	}
+	.logo-icon {
+		background: var(--accent-gradient);
+		color: white;
+		padding: 0.2em 0.5em;
+		border-radius: 8px;
+		font-size: 0.85em;
+		font-weight: 800;
+		letter-spacing: 0.05em;
+	}
+	.logo-text {
+		font-size: 1.1em;
+	}
+	.internal-links {
+		display: flex;
+		gap: 0.3em;
+	}
+	nav a, .internal-links :global(a) {
+		padding: 0.5em 0.7em;
+		color: rgb(var(--gray));
+		font-size: 0.9em;
+		font-weight: 500;
+		border-radius: 8px;
+		transition: background .2s, color .2s;
+	}
+	nav a:hover, .internal-links :global(a:hover) {
+		background: #f3f4f6;
+		color: rgb(var(--gray-dark));
+	}
+	nav a.active, .internal-links :global(a.active) {
+		color: var(--accent);
+		background: #eef2ff;
+	}
+	.menu-btn {
+		display: none;
+		background: none;
+		border: none;
+		padding: 0.5em;
+		cursor: pointer;
+		color: rgb(var(--gray-dark));
+	}
+	@media (max-width: 720px) {
+		.menu-btn { display: block; }
+		.internal-links {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			flex-direction: column;
+			background: white;
+			border-bottom: 1px solid #e5e7eb;
+			padding: 0.5em;
+			box-shadow: 0 4px 12px rgba(0,0,0,.1);
+		}
+		.internal-links.open { display: flex; }
+	}
+</style>
+

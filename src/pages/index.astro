@@ -1,0 +1,218 @@
+﻿---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero -->
+			<section class="hero">
+				<h1><br><span class="gradient-text">配信のミカタ</span>で稼ごう</h1>
+				<p class="hero-sub">Netflix・U-NEXT・Hulu・Amazon Prime…動画配信サービスの比較からYouTube・TikTok収益化まで徹底解説。</p>
+				<a href="/blog" class="hero-btn">記事を読む →</a>
+			</section>
+
+			
+			<!-- 人気記事ランキング -->
+			<section class="ranking-section">
+				<h2 class="section-title">🔥 人気記事ランキング</h2>
+				<div class="ranking-list">
+					{posts.slice(0, 3).map((post, i) => (
+						<a href={`/blog/${post.id}/`} class={`ranking-item rank-${i + 1}`}>
+							<span class="ranking-number">{i + 1}</span>
+							<div class="ranking-content">
+								<span class="tag">{post.data.category}</span>
+								<h3>{post.data.title}</h3>
+								<p>{post.data.description}</p>
+							</div>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<!-- Featured Posts -->
+			<section class="posts-section">
+				<h2 class="section-title">最新記事</h2>
+				<div class="posts-grid">
+					{posts.map((post) => (
+						<a href={`/blog/${post.id}/`} class="post-card">
+							<div class="post-meta">
+								<span class="tag">{post.data.category}</span>
+								<FormattedDate date={post.data.pubDate} />
+							</div>
+							<h3>{post.data.title}</h3>
+							<p>{post.data.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<!-- CTA -->
+			<section class="cta-box">
+				<h3>AIで副業を始めたい方へ</h3>
+				<p>まずは無料のAIツールから始めてみませんか？初心者でも今日から始められます。</p>
+				<a href="/blog" class="cta-btn">おすすめ記事を見る</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 3em 0 2em;
+	}
+	.hero h1 {
+		font-size: 2.2em;
+		line-height: 1.3;
+		margin-bottom: 0.5em;
+		border: none;
+	}
+	.gradient-text {
+		background: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+	.hero-sub {
+		font-size: 1.1em;
+		color: rgb(var(--gray));
+		margin-bottom: 1.5em;
+	}
+	.hero-btn {
+		display: inline-block;
+		background: var(--accent-gradient);
+		color: white !important;
+		padding: 0.7em 2em;
+		border-radius: 50px;
+		font-weight: 600;
+		transition: transform .2s, box-shadow .2s;
+		box-shadow: 0 4px 15px rgba(99,102,241,.3);
+	}
+	.hero-btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(99,102,241,.4);
+	}
+	.section-title {
+		font-size: 1.4em;
+		border: none;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+	.posts-grid {
+		display: grid;
+		gap: 1.2em;
+	}
+	.post-card {
+		display: block;
+		background: white;
+		border-radius: var(--radius);
+		padding: 1.5em;
+		box-shadow: var(--box-shadow);
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		transition: box-shadow .2s, transform .2s;
+	}
+	.post-card:hover {
+		box-shadow: var(--box-shadow-lg);
+		transform: translateY(-3px);
+		color: rgb(var(--gray-dark));
+	}
+	.post-card h3 {
+		font-size: 1.15em;
+		margin: 0.5em 0 0.3em;
+		line-height: 1.4;
+	}
+	.post-card p {
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+		margin: 0;
+		line-height: 1.6;
+	}
+	.post-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.8em;
+		font-size: 0.8em;
+		color: rgb(var(--gray));
+	}
+	@media (max-width: 720px) {
+		.hero h1 { font-size: 1.6em; }
+		.hero-sub { font-size: 0.95em; }
+	}
+
+	.ranking-section {
+		margin-bottom: 2em;
+	}
+	.ranking-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8em;
+	}
+	.ranking-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1em;
+		background: white;
+		border-radius: var(--radius);
+		padding: 1.2em;
+		box-shadow: var(--box-shadow);
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		transition: box-shadow .2s, transform .2s;
+		border-left: 4px solid transparent;
+	}
+	.ranking-item:hover {
+		box-shadow: var(--box-shadow-lg);
+		transform: translateY(-2px);
+		color: rgb(var(--gray-dark));
+	}
+	.ranking-item.rank-1 { border-left-color: #fbbf24; }
+	.ranking-item.rank-2 { border-left-color: #9ca3af; }
+	.ranking-item.rank-3 { border-left-color: #cd7c2f; }
+	.ranking-number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.2em;
+		height: 2.2em;
+		border-radius: 50%;
+		font-weight: 800;
+		font-size: 1.1em;
+		flex-shrink: 0;
+		color: white;
+	}
+	.rank-1 .ranking-number { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+	.rank-2 .ranking-number { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+	.rank-3 .ranking-number { background: linear-gradient(135deg, #cd7c2f, #b45309); }
+	.ranking-content h3 {
+		font-size: 1.05em;
+		margin: 0.3em 0 0.2em;
+		line-height: 1.4;
+	}
+	.ranking-content p {
+		font-size: 0.85em;
+		color: rgb(var(--gray));
+		margin: 0;
+		line-height: 1.5;
+	}
+	.ranking-content .tag {
+		font-size: 0.75em;
+	}
+</style>
+

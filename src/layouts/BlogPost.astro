@@ -1,0 +1,139 @@
+﻿---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, ADSENSE_ID } from '../consts';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, category, tags } = Astro.props;
+---
+
+<html lang="ja">
+	<head>
+		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 760px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+			}
+			.article-header {
+				margin-bottom: 2em;
+				padding-bottom: 1em;
+				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.article-meta {
+				display: flex;
+				align-items: center;
+				gap: 1em;
+				margin-bottom: 0.8em;
+				font-size: 0.85em;
+				color: rgb(var(--gray));
+			}
+			.article-header h1 {
+				font-size: 1.8em;
+				line-height: 1.4;
+				margin: 0.3em 0;
+			}
+			.article-desc {
+				color: rgb(var(--gray));
+				font-size: 0.95em;
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4em;
+				margin-top: 0.8em;
+			}
+			.last-updated {
+				font-style: italic;
+				font-size: 0.85em;
+				color: rgb(var(--gray));
+			}
+			/* Article body styles */
+			.prose :global(h2) {
+				margin-top: 2.5em;
+			}
+			.prose :global(h3) {
+				margin-top: 1.5em;
+			}
+			.prose :global(ul), .prose :global(ol) {
+				padding-left: 1.5em;
+				margin-bottom: 1.5em;
+			}
+			.prose :global(li) {
+				margin-bottom: 0.4em;
+			}
+			/* Inline CTA in articles */
+			.prose :global(.cta-box) {
+				margin: 2.5em 0;
+			}
+			@media (max-width: 720px) {
+				.article-header h1 { font-size: 1.4em; }
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="article-header">
+						<div class="article-meta">
+							<span class="tag">{category}</span>
+							<FormattedDate date={pubDate} />
+							{updatedDate && (
+								<span class="last-updated">
+									（更新: <FormattedDate date={updatedDate} />）
+								</span>
+							)}
+						</div>
+						<h1>{title}</h1>
+						<p class="article-desc">{description}</p>
+						{tags && tags.length > 0 && (
+							<div class="tags">
+								{tags.map((tag: string) => <span class="tag">{tag}</span>)}
+							</div>
+						)}
+					</div>
+					<!-- Ad slot -->
+					{ADSENSE_ID && (
+						<div class="ad-slot" style="margin: 2em 0; text-align: center; min-height: 100px;">
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="auto"
+								data-full-width-responsive="true"></ins>
+						</div>
+					)}
+					<slot />
+</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

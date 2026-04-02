@@ -1,0 +1,191 @@
+﻿:root {
+	--accent: #ef4444;
+	--accent-light: #f87171;
+	--accent-dark: #dc2626;
+	--accent-gradient: linear-gradient(135deg, #ef4444, #f97316, #eab308);
+	--black: 15, 18, 25;
+	--gray: 107, 114, 128;
+	--gray-light: 243, 244, 246;
+	--gray-dark: 31, 41, 55;
+	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+	--box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.06);
+	--box-shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+	--cta-bg: #fef3c7;
+	--cta-border: #f59e0b;
+	--cta-btn: linear-gradient(135deg, #f59e0b, #d97706);
+	--success: #10b981;
+	--radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+	font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #f9fafb;
+	color: rgb(var(--gray-dark));
+	font-size: 17px;
+	line-height: 1.8;
+	-webkit-font-smoothing: antialiased;
+}
+
+main {
+	width: 760px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 2em 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 0.5rem 0;
+	color: rgb(var(--black));
+	line-height: 1.3;
+	font-feature-settings: "palt";
+}
+h1 { font-size: 2em; }
+h2 { font-size: 1.6em; border-bottom: 3px solid var(--accent); padding-bottom: 0.3em; margin-top: 2em; }
+h3 { font-size: 1.3em; }
+
+a { color: var(--accent); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--accent-dark); }
+
+p { margin-bottom: 1.2em; }
+.prose p { margin-bottom: 1.5em; }
+
+img { max-width: 100%; height: auto; border-radius: var(--radius); }
+
+code {
+	padding: 2px 6px;
+	background-color: rgb(var(--gray-light));
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+pre { padding: 1.5em; border-radius: var(--radius); }
+pre > code { all: unset; }
+
+blockquote {
+	border-left: 4px solid var(--accent);
+	padding: 0.5em 1em;
+	margin: 1.5em 0;
+	background: rgb(var(--gray-light));
+	border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+hr { border: none; border-top: 1px solid rgb(var(--gray-light)); margin: 2em 0; }
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5em 0;
+}
+th, td {
+	border: 1px solid #e5e7eb;
+	padding: 0.75em 1em;
+	text-align: left;
+}
+th {
+	background: var(--accent);
+	color: white;
+	font-weight: 600;
+}
+tr:nth-child(even) { background: #f9fafb; }
+
+/* Affiliate CTA Box */
+.cta-box {
+	background: var(--cta-bg);
+	border: 2px solid var(--cta-border);
+	border-radius: var(--radius);
+	padding: 1.5em;
+	margin: 2em 0;
+	text-align: center;
+}
+.cta-box h3 {
+	color: #92400e;
+	margin-bottom: 0.5em;
+	font-size: 1.2em;
+}
+.cta-box p {
+	margin-bottom: 1em;
+	color: #78350f;
+}
+.cta-btn {
+	display: inline-block;
+	background: var(--cta-btn);
+	color: white !important;
+	padding: 0.8em 2em;
+	border-radius: 50px;
+	font-weight: 700;
+	font-size: 1.05em;
+	text-decoration: none;
+	transition: transform .2s, box-shadow .2s;
+	box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+.cta-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+}
+
+/* Info Box */
+.info-box {
+	background: #eff6ff;
+	border-left: 4px solid #3b82f6;
+	border-radius: 0 var(--radius) var(--radius) 0;
+	padding: 1em 1.5em;
+	margin: 1.5em 0;
+}
+
+/* Card */
+.card {
+	background: white;
+	border-radius: var(--radius);
+	box-shadow: var(--box-shadow);
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+	transition: box-shadow .2s, transform .2s;
+}
+.card:hover {
+	box-shadow: var(--box-shadow-lg);
+	transform: translateY(-2px);
+}
+
+/* Tag */
+.tag {
+	display: inline-block;
+	background: #eef2ff;
+	color: var(--accent);
+	padding: 0.2em 0.8em;
+	border-radius: 50px;
+	font-size: 0.8em;
+	font-weight: 600;
+	margin-right: 0.5em;
+}
+
+/* Badge */
+.badge-new {
+	background: var(--success);
+	color: white;
+	padding: 0.15em 0.6em;
+	border-radius: 50px;
+	font-size: 0.75em;
+	font-weight: 700;
+	vertical-align: middle;
+}
+
+@media (max-width: 720px) {
+	body { font-size: 16px; }
+	main { padding: 1em; }
+	h1 { font-size: 1.6em; }
+	h2 { font-size: 1.3em; }
+}
+
+.sr-only {
+	border: 0; padding: 0; margin: 0;
+	position: absolute !important;
+	height: 1px; width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+

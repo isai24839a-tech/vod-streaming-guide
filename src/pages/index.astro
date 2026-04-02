@@ -1,10 +1,10 @@
-﻿---
+---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, SIDEBAR_ADS } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -18,56 +18,94 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body>
 		<Header />
-		<main>
-			<!-- Hero -->
-			<section class="hero">
-				<h1><br><span class="gradient-text">配信のミカタ</span>で稼ごう</h1>
-				<p class="hero-sub">Netflix・U-NEXT・Hulu・Amazon Prime…動画配信サービスの比較からYouTube・TikTok収益化まで徹底解説。</p>
-				<a href="/blog" class="hero-btn">記事を読む →</a>
-			</section>
+		<div class="page-wrapper">
+			<main>
+				<!-- Hero -->
+				<section class="hero">
+					<h1><br><span class="gradient-text">配信のミカタ</span>で稼ごう</h1>
+					<p class="hero-sub">Netflix・U-NEXT・Hulu・Amazon Prime…動画配信サービスの比較からYouTube・TikTok収益化まで徹底解説。</p>
+					<a href="/blog" class="hero-btn">記事を読む →</a>
+				</section>
 
-			
-			<!-- 人気記事ランキング -->
-			<section class="ranking-section">
-				<h2 class="section-title">🔥 人気記事ランキング</h2>
-				<div class="ranking-list">
-					{posts.slice(0, 3).map((post, i) => (
-						<a href={`/blog/${post.id}/`} class={`ranking-item rank-${i + 1}`}>
-							<span class="ranking-number">{i + 1}</span>
-							<div class="ranking-content">
-								<span class="tag">{post.data.category}</span>
+				<!-- Inline Banner Ad -->
+				<section class="inline-banner">
+					<h3>お得に動画配信を楽しもう</h3>
+					<p>各サービスの無料体験を活用して、お気に入りを見つけよう</p>
+					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">詳しく見る →</a>
+					<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+				</section>
+
+				<!-- 人気記事ランキング -->
+				<section class="ranking-section">
+					<h2 class="section-title">🔥 人気記事ランキング</h2>
+					<div class="ranking-list">
+						{posts.slice(0, 3).map((post, i) => (
+							<a href={`/blog/${post.id}/`} class={`ranking-item rank-${i + 1}`}>
+								<span class="ranking-number">{i + 1}</span>
+								<div class="ranking-content">
+									<span class="tag">{post.data.category}</span>
+									<h3>{post.data.title}</h3>
+									<p>{post.data.description}</p>
+								</div>
+							</a>
+						))}
+					</div>
+				</section>
+
+				<!-- Mid CTA -->
+				<section class="cta-box">
+					<h3>VODサービス選びに迷ったら</h3>
+					<p>各サービスの特徴を徹底比較。あなたにぴったりのサービスが見つかります。</p>
+					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">比較記事を見る →</a>
+					<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+				</section>
+
+				<!-- Featured Posts -->
+				<section class="posts-section">
+					<h2 class="section-title">最新記事</h2>
+					<div class="posts-grid">
+						{posts.map((post) => (
+							<a href={`/blog/${post.id}/`} class="post-card">
+								<div class="post-meta">
+									<span class="tag">{post.data.category}</span>
+									<FormattedDate date={post.data.pubDate} />
+								</div>
 								<h3>{post.data.title}</h3>
 								<p>{post.data.description}</p>
-							</div>
-						</a>
-					))}
-				</div>
-			</section>
+							</a>
+						))}
+					</div>
+				</section>
 
-			<!-- Featured Posts -->
-			<section class="posts-section">
-				<h2 class="section-title">最新記事</h2>
-				<div class="posts-grid">
-					{posts.map((post) => (
-						<a href={`/blog/${post.id}/`} class="post-card">
-							<div class="post-meta">
-								<span class="tag">{post.data.category}</span>
-								<FormattedDate date={post.data.pubDate} />
-							</div>
-							<h3>{post.data.title}</h3>
-							<p>{post.data.description}</p>
-						</a>
-					))}
-				</div>
-			</section>
+				<!-- Bottom CTA -->
+				<section class="cta-box">
+					<h3>まずは無料体験から</h3>
+					<p>多くのVODサービスは無料トライアルを提供中。リスクゼロで試せます。</p>
+					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">無料体験する →</a>
+					<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+				</section>
+			</main>
 
-			<!-- CTA -->
-			<section class="cta-box">
-				<h3>AIで副業を始めたい方へ</h3>
-				<p>まずは無料のAIツールから始めてみませんか？初心者でも今日から始められます。</p>
-				<a href="/blog" class="cta-btn">おすすめ記事を見る</a>
-			</section>
-		</main>
+			<!-- Sidebar -->
+			<aside class="sidebar">
+				<div class="sidebar-sticky">
+					{SIDEBAR_ADS.map((ad) => (
+						<div class="sidebar-ad">
+							<h4>{ad.heading}</h4>
+							<p>{ad.desc}</p>
+							<a href={ad.url} class="cta-btn" rel="nofollow">{ad.cta}</a>
+							<img border="0" width="1" height="1" src={ad.pixel} alt="">
+						</div>
+					))}
+					<div class="sidebar-popular">
+						<h4>人気の記事</h4>
+						{posts.slice(0, 5).map((post) => (
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						))}
+					</div>
+				</div>
+			</aside>
+		</div>
 		<Footer />
 	</body>
 </html>
@@ -215,4 +253,3 @@ const posts = (await getCollection('blog')).sort(
 		font-size: 0.75em;
 	}
 </style>
-

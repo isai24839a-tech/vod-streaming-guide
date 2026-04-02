@@ -189,3 +189,110 @@ tr:nth-child(even) { background: #f9fafb; }
 	white-space: nowrap;
 }
 
+/* Wide layout with sidebar */
+.page-wrapper {
+	display: flex;
+	max-width: 1200px;
+	margin: 0 auto;
+	gap: 2em;
+	padding: 2em 1em;
+	align-items: flex-start;
+}
+.page-wrapper main {
+	flex: 1;
+	min-width: 0;
+	width: auto;
+	max-width: 760px;
+	margin: 0;
+	padding: 0;
+}
+.sidebar {
+	width: 300px;
+	flex-shrink: 0;
+}
+.sidebar-sticky {
+	position: sticky;
+	top: 80px;
+}
+.sidebar-ad {
+	background: white;
+	border-radius: var(--radius);
+	box-shadow: var(--box-shadow);
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+	text-align: center;
+}
+.sidebar-ad h4 {
+	font-size: 1.05em;
+	margin-bottom: 0.5em;
+	color: rgb(var(--gray-dark));
+}
+.sidebar-ad p {
+	font-size: 0.85em;
+	color: rgb(var(--gray));
+	margin-bottom: 1em;
+	line-height: 1.6;
+}
+.sidebar-ad .cta-btn {
+	display: block;
+	font-size: 0.95em;
+	padding: 0.7em 1.2em;
+}
+.sidebar-popular {
+	background: white;
+	border-radius: var(--radius);
+	box-shadow: var(--box-shadow);
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+}
+.sidebar-popular h4 {
+	font-size: 1.05em;
+	margin-bottom: 0.8em;
+	color: rgb(var(--gray-dark));
+	border-bottom: 2px solid var(--accent);
+	padding-bottom: 0.3em;
+}
+.sidebar-popular a {
+	display: block;
+	padding: 0.6em 0;
+	border-bottom: 1px solid rgb(var(--gray-light));
+	font-size: 0.85em;
+	line-height: 1.5;
+	color: rgb(var(--gray-dark));
+}
+.sidebar-popular a:last-child { border-bottom: none; }
+.sidebar-popular a:hover { color: var(--accent); }
+
+/* Inline banner ad for top page */
+.inline-banner {
+	background: var(--accent-gradient);
+	border-radius: var(--radius);
+	padding: 1.5em 2em;
+	text-align: center;
+	margin: 2em 0;
+	color: white;
+}
+.inline-banner h3 {
+	color: white;
+	font-size: 1.15em;
+	margin-bottom: 0.5em;
+}
+.inline-banner p {
+	color: rgba(255,255,255,0.9);
+	font-size: 0.9em;
+	margin-bottom: 1em;
+}
+.inline-banner .cta-btn {
+	background: white;
+	color: var(--accent) !important;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.inline-banner .cta-btn:hover {
+	box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 1024px) {
+	.sidebar { display: none; }
+	.page-wrapper { max-width: 760px; }
+	.page-wrapper main { max-width: 100%; }
+}

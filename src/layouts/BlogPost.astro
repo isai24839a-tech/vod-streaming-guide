@@ -1,26 +1,25 @@
-﻿---
+---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE, ADSENSE_ID } from '../consts';
+import { SITE_TITLE, ADSENSE_ID, SIDEBAR_ADS } from '../consts';
+import { getCollection } from 'astro:content';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, category, tags } = Astro.props;
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <html lang="ja">
 	<head>
 		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
 			.hero-image {
 				width: 100%;
 			}
@@ -31,10 +30,8 @@ const { title, description, pubDate, updatedDate, heroImage, category, tags } = 
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
-				width: 760px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
+				max-width: 100%;
+				padding: 0;
 			}
 			.article-header {
 				margin-bottom: 2em;
@@ -69,7 +66,6 @@ const { title, description, pubDate, updatedDate, heroImage, category, tags } = 
 				font-size: 0.85em;
 				color: rgb(var(--gray));
 			}
-			/* Article body styles */
 			.prose :global(h2) {
 				margin-top: 2.5em;
 			}
@@ -83,7 +79,6 @@ const { title, description, pubDate, updatedDate, heroImage, category, tags } = 
 			.prose :global(li) {
 				margin-bottom: 0.4em;
 			}
-			/* Inline CTA in articles */
 			.prose :global(.cta-box) {
 				margin: 2.5em 0;
 			}
@@ -95,45 +90,66 @@ const { title, description, pubDate, updatedDate, heroImage, category, tags } = 
 
 	<body>
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="article-header">
-						<div class="article-meta">
-							<span class="tag">{category}</span>
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<span class="last-updated">
-									（更新: <FormattedDate date={updatedDate} />）
-								</span>
+		<div class="page-wrapper">
+			<main>
+				<article>
+					<div class="hero-image">
+						{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					</div>
+					<div class="prose">
+						<div class="article-header">
+							<div class="article-meta">
+								<span class="tag">{category}</span>
+								<FormattedDate date={pubDate} />
+								{updatedDate && (
+									<span class="last-updated">
+										（更新: <FormattedDate date={updatedDate} />）
+									</span>
+								)}
+							</div>
+							<h1>{title}</h1>
+							<p class="article-desc">{description}</p>
+							{tags && tags.length > 0 && (
+								<div class="tags">
+									{tags.map((tag: string) => <span class="tag">{tag}</span>)}
+								</div>
 							)}
 						</div>
-						<h1>{title}</h1>
-						<p class="article-desc">{description}</p>
-						{tags && tags.length > 0 && (
-							<div class="tags">
-								{tags.map((tag: string) => <span class="tag">{tag}</span>)}
+						{ADSENSE_ID && (
+							<div class="ad-slot" style="margin: 2em 0; text-align: center; min-height: 100px;">
+								<ins class="adsbygoogle"
+									style="display:block"
+									data-ad-client={ADSENSE_ID}
+									data-ad-slot="auto"
+									data-ad-format="auto"
+									data-full-width-responsive="true"></ins>
 							</div>
 						)}
+						<slot />
 					</div>
-					<!-- Ad slot -->
-					{ADSENSE_ID && (
-						<div class="ad-slot" style="margin: 2em 0; text-align: center; min-height: 100px;">
-							<ins class="adsbygoogle"
-								style="display:block"
-								data-ad-client={ADSENSE_ID}
-								data-ad-slot="auto"
-								data-ad-format="auto"
-								data-full-width-responsive="true"></ins>
+				</article>
+			</main>
+
+			<!-- Sidebar -->
+			<aside class="sidebar">
+				<div class="sidebar-sticky">
+					{SIDEBAR_ADS.map((ad) => (
+						<div class="sidebar-ad">
+							<h4>{ad.heading}</h4>
+							<p>{ad.desc}</p>
+							<a href={ad.url} class="cta-btn" rel="nofollow">{ad.cta}</a>
+							<img border="0" width="1" height="1" src={ad.pixel} alt="">
 						</div>
-					)}
-					<slot />
-</div>
-			</article>
-		</main>
+					))}
+					<div class="sidebar-popular">
+						<h4>人気の記事</h4>
+						{posts.slice(0, 5).map((post) => (
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						))}
+					</div>
+				</div>
+			</aside>
+		</div>
 		<Footer />
 	</body>
 </html>

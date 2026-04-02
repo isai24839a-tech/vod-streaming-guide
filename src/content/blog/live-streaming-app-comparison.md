@@ -22,7 +22,7 @@ tags: ['ライブ配信', '配信アプリ', '投げ銭']
 
 ## 5つのアプリの基本情報まとめ
 
-![配信アプリ比較](/images/blog/streaming-setup.jpg)
+![配信アプリ比較](/images/blog/vod-streaming-guide-live-streaming-app-comparison-01.jpg)
 
 まずはざっくり各アプリの特徴を把握しておこう。
 
@@ -63,7 +63,7 @@ tags: ['ライブ配信', '配信アプリ', '投げ銭']
 
 ## 稼ぎやすさ比較：リアルな収入を公開
 
-![収益比較](/images/blog/income-growth.jpg)
+![収益比較](/images/blog/vod-streaming-guide-live-streaming-app-comparison-02.jpg)
 
 ここが一番気になるところだよね。各アプリで僕が実際に配信した時の収益感をお伝えします。
 
@@ -121,7 +121,7 @@ IRIAMは自分のイラスト（立ち絵）を使ってVTuberとして配信で
 
 ## 使いやすさ・機能性を比較
 
-![アプリの使いやすさ](/images/blog/laptop-coffee.jpg)
+![アプリの使いやすさ](/images/blog/vod-streaming-guide-live-streaming-app-comparison-03.jpg)
 
 稼ぎやすさの次に大事なのが、アプリの使いやすさ。毎日使うものだから、UIの良し悪しは地味に効いてくる。
 
@@ -171,7 +171,7 @@ AKB48グループなどのアイドルが多く配信していることもあっ
 
 ## 初心者が月5万円稼ぐための具体的戦略
 
-![配信戦略](/images/blog/getting-started.jpg)
+![配信戦略](/images/blog/vod-streaming-guide-live-streaming-app-comparison-04.jpg)
 
 ここからは実践編。初心者がライブ配信で月5万円を稼ぐための戦略を、ステップバイステップで解説する。
 
@@ -266,7 +266,7 @@ BGMにJ-POPを流す、テレビの映像を映すなど、著作権を侵害す
 
 ## ライブ配信で稼いでる人の共通点
 
-![成功者の特徴](/images/blog/success-celebrate.jpg)
+![成功者の特徴](/images/blog/vod-streaming-guide-live-streaming-app-comparison-05.jpg)
 
 これまで色んなライバーを見てきて、稼いでる人にはいくつかの共通点があることに気づいた。
 

@@ -19,7 +19,13 @@ import Header from '../components/Header.astro';
 			<p>当サイトでは、各動画配信サービスを実際に契約して比較し、動画クリエイターとしての収益化ノウハウも発信しています。</p>
 
 			<h2>運営者</h2>
-			<p>副業や投資に日常的に取り組んでいるフリーランスです。実体験をもとに、本当に役立つ情報だけを発信したいという思いから当サイトを運営しています。</p>
+			<div class="author-card">
+				<img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=vod-streaming-guide&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=gradientLinear" alt="動画オタク" class="author-avatar" width="120" height="120">
+				<div class="author-info">
+					<h3 class="author-name">動画オタク</h3>
+					<p>副業や投資に日常的に取り組んでいるフリーランスです。実体験をもとに、本当に役立つ情報だけを発信したいという思いから当サイトを運営しています。</p>
+				</div>
+			</div>
 
 			<h2>免責事項</h2>
 			<p>当サイトに掲載されている情報は、可能な限り正確な情報を掲載するよう努めておりますが、情報の正確性・完全性を保証するものではありません。当サイトの情報を利用した結果生じた損害について、一切の責任を負いかねますのでご了承ください。</p>
@@ -31,3 +37,41 @@ import Header from '../components/Header.astro';
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.author-card {
+		display: flex;
+		align-items: center;
+		gap: 1.5em;
+		background: white;
+		border-radius: 16px;
+		padding: 1.5em;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+		margin: 1em 0 2em;
+	}
+	.author-avatar {
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		border: 4px solid var(--accent, #3b82f6);
+		flex-shrink: 0;
+		background: #f0f4ff;
+	}
+	.author-name {
+		font-size: 1.2em;
+		margin-bottom: 0.3em;
+		border: none;
+	}
+	.author-info p {
+		font-size: 0.9em;
+		color: #6b7280;
+		margin: 0;
+		line-height: 1.6;
+	}
+	@media (max-width: 600px) {
+		.author-card {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+</style>

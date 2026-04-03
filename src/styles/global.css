@@ -211,8 +211,7 @@ tr:nth-child(even) { background: #f9fafb; }
 	flex-shrink: 0;
 }
 .sidebar-sticky {
-	position: sticky;
-	top: 80px;
+	/* sticky removed - scroll with page */
 }
 .sidebar-ad {
 	background: white;
@@ -407,4 +406,69 @@ tr:nth-child(even) { background: #f9fafb; }
 
 @media (max-width: 1024px) {
 	.footer-ad-section { padding: 0 1em 1em; }
+}
+
+/* === Boosted Sidebar (2026-04-03) === */
+.sidebar-scroll {
+	/* No sticky - scroll with page so all ads are visible */
+}
+
+.sidebar-banner {
+	background: linear-gradient(135deg, #fef3c7, #fde68a);
+	border: 2px solid #f59e0b;
+	border-radius: var(--radius);
+	padding: 1.2em;
+	margin-bottom: 1.5em;
+	text-align: center;
+}
+.sidebar-banner .banner-label {
+	display: inline-block;
+	background: #f59e0b;
+	color: white;
+	font-size: 0.7em;
+	font-weight: 700;
+	padding: 0.1em 0.6em;
+	border-radius: 4px;
+	margin-bottom: 0.5em;
+}
+.sidebar-banner h4 {
+	font-size: 1em;
+	margin-bottom: 0.8em;
+	color: #92400e;
+}
+.sidebar-banner .cta-btn {
+	display: block;
+	font-size: 0.9em;
+	padding: 0.6em 1em;
+}
+
+/* Sidebar author card */
+.sidebar-author {
+	display: flex;
+	align-items: center;
+	gap: 0.8em;
+	background: white;
+	border-radius: var(--radius);
+	box-shadow: var(--box-shadow);
+	padding: 1em;
+	margin-bottom: 1.5em;
+}
+.sidebar-author img {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 3px solid var(--accent);
+	flex-shrink: 0;
+	background: #f0f4ff;
+}
+.sidebar-author strong {
+	display: block;
+	font-size: 0.9em;
+	color: rgb(var(--gray-dark));
+}
+.sidebar-author p {
+	font-size: 0.75em;
+	color: rgb(var(--gray));
+	margin: 0.2em 0 0;
+	line-height: 1.4;
 }

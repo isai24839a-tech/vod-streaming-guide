@@ -15,6 +15,14 @@ const posts = (await getCollection('blog')).sort(
 <html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<!-- Structured Data: WebSite -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": SITE_TITLE,
+			"description": SITE_DESCRIPTION,
+			"url": Astro.site ? Astro.site.href : ""
+		})}></script>
 	</head>
 	<body>
 		<Header />

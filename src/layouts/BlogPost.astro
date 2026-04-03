@@ -126,6 +126,23 @@ const posts = (await getCollection('blog')).sort(
 							</div>
 						)}
 						<slot />
+						{ADSENSE_ID && (
+							<div class="article-end-ad">
+								<div class="ad-label">広告</div>
+								<ins class="adsbygoogle"
+									style="display:block"
+									data-ad-client={ADSENSE_ID}
+									data-ad-slot="auto"
+									data-ad-format="auto"
+									data-full-width-responsive="true"></ins>
+							</div>
+						)}
+						<div class="article-after-cta">
+							<h3>{SIDEBAR_ADS[0].heading}</h3>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
 					</div>
 				</article>
 			</main>
@@ -133,23 +150,74 @@ const posts = (await getCollection('blog')).sort(
 			<!-- Sidebar -->
 			<aside class="sidebar">
 				<div class="sidebar-sticky">
-					{SIDEBAR_ADS.map((ad) => (
+					{SIDEBAR_ADS[0] && (
 						<div class="sidebar-ad">
-							<h4>{ad.heading}</h4>
-							<p>{ad.desc}</p>
-							<a href={ad.url} class="cta-btn" rel="nofollow">{ad.cta}</a>
-							<img border="0" width="1" height="1" src={ad.pixel} alt="">
+							<h4>{SIDEBAR_ADS[0].heading}</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
 						</div>
-					))}
+					)}
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[1] && (
+						<div class="sidebar-ad">
+							<h4>{SIDEBAR_ADS[1].heading}</h4>
+							<p>{SIDEBAR_ADS[1].desc}</p>
+							<a href={SIDEBAR_ADS[1].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[1].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[1].pixel} alt="">
+						</div>
+					)}
+
 					<div class="sidebar-popular">
 						<h4>人気の記事</h4>
 						{posts.slice(0, 5).map((post) => (
 							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
 						))}
 					</div>
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[0] && (
+						<div class="sidebar-cta-gradient">
+							<h4>\u2728 おすすめ</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
+					)}
 				</div>
 			</aside>
 		</div>
 		<Footer />
+
+	<script is:inline>
+		document.addEventListener('DOMContentLoaded', function() {
+			document.querySelectorAll('.adsbygoogle').forEach(function() {
+				try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+			});
+		});
+	</script>
 	</body>
 </html>

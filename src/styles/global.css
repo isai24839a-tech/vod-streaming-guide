@@ -296,3 +296,115 @@ tr:nth-child(even) { background: #f9fafb; }
 	.page-wrapper { max-width: 760px; }
 	.page-wrapper main { max-width: 100%; }
 }
+
+/* === Enhanced Ad Placements (2026-04-03) === */
+
+.sidebar-adsense {
+	background: white;
+	border-radius: var(--radius);
+	box-shadow: var(--box-shadow);
+	padding: 1em;
+	margin-bottom: 1.5em;
+	text-align: center;
+	min-height: 250px;
+}
+.sidebar-adsense .ad-label {
+	font-size: 0.7em;
+	color: rgb(var(--gray));
+	margin-bottom: 0.5em;
+	text-align: left;
+}
+
+.article-end-ad {
+	margin: 2.5em 0;
+	padding: 1.5em;
+	text-align: center;
+	background: #f9fafb;
+	border-radius: var(--radius);
+	border: 1px solid rgb(var(--gray-light));
+	min-height: 120px;
+}
+.article-end-ad .ad-label {
+	font-size: 0.7em;
+	color: rgb(var(--gray));
+	margin-bottom: 0.5em;
+}
+
+.sidebar-cta-gradient {
+	background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+	border-radius: var(--radius);
+	box-shadow: var(--box-shadow);
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+	text-align: center;
+	color: white;
+}
+.sidebar-cta-gradient h4 {
+	color: white;
+	font-size: 1em;
+	margin-bottom: 0.5em;
+}
+.sidebar-cta-gradient p {
+	color: rgba(255,255,255,0.9);
+	font-size: 0.85em;
+	margin-bottom: 1em;
+	line-height: 1.5;
+}
+.sidebar-cta-gradient .cta-btn {
+	background: white;
+	color: var(--accent) !important;
+	font-size: 0.9em;
+	padding: 0.6em 1.5em;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.section-adsense {
+	text-align: center;
+	padding: 1em;
+	margin: 2em 0;
+	min-height: 100px;
+}
+.section-adsense .ad-label {
+	font-size: 0.7em;
+	color: rgb(var(--gray));
+	margin-bottom: 0.3em;
+}
+
+.article-after-cta {
+	background: var(--cta-bg);
+	border: 2px solid var(--cta-border);
+	border-radius: var(--radius);
+	padding: 1.5em;
+	margin: 2em 0;
+	text-align: center;
+}
+.article-after-cta h3 {
+	color: #92400e;
+	margin-bottom: 0.5em;
+	font-size: 1.1em;
+}
+.article-after-cta p {
+	color: #78350f;
+	margin-bottom: 1em;
+	font-size: 0.95em;
+}
+
+.footer-ad-section {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1em 2em;
+}
+.footer-adsense {
+	text-align: center;
+	min-height: 90px;
+	padding: 1em;
+}
+.footer-adsense .ad-label {
+	font-size: 0.7em;
+	color: rgb(var(--gray));
+	margin-bottom: 0.3em;
+}
+
+@media (max-width: 1024px) {
+	.footer-ad-section { padding: 0 1em 1em; }
+}

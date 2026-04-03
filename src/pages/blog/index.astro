@@ -4,7 +4,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, SIDEBAR_ADS, ADSENSE_ID } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -76,7 +76,8 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body>
 		<Header />
-		<main>
+		<div class="page-wrapper">
+			<main>
 			<h1 class="page-title">記事一覧</h1>
 			<p class="page-desc">AIを活用した副業・収益化に関する記事をお届けします</p>
 			<div class="posts-list">
@@ -96,7 +97,79 @@ const posts = (await getCollection('blog')).sort(
 					</a>
 				))}
 			</div>
-		</main>
+			</main>
+
+<!-- Sidebar -->
+			<aside class="sidebar">
+				<div class="sidebar-sticky">
+					{SIDEBAR_ADS[0] && (
+						<div class="sidebar-ad">
+							<h4>{SIDEBAR_ADS[0].heading}</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
+					)}
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[1] && (
+						<div class="sidebar-ad">
+							<h4>{SIDEBAR_ADS[1].heading}</h4>
+							<p>{SIDEBAR_ADS[1].desc}</p>
+							<a href={SIDEBAR_ADS[1].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[1].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[1].pixel} alt="">
+						</div>
+					)}
+
+					<div class="sidebar-popular">
+						<h4>人気の記事</h4>
+						{posts.slice(0, 5).map((post) => (
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						))}
+					</div>
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[0] && (
+						<div class="sidebar-cta-gradient">
+							<h4>\u2728 おすすめ</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
+					)}
+				</div>
+			</aside>
+		</div>
 		<Footer />
+
+	<script is:inline>
+		document.addEventListener('DOMContentLoaded', function() {
+			document.querySelectorAll('.adsbygoogle').forEach(function() {
+				try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+			});
+		});
+	</script>
 	</body>
 </html>

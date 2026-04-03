@@ -1,7 +1,7 @@
 ---
 title: '動画編集ソフトおすすめ2026｜無料から有料まで用途別に徹底比較'
 description: 'CapCut・Premiere Pro・DaVinci Resolve・Final Cut Pro・Filmoraの5大動画編集ソフトを用途別に徹底比較。無料ソフトでどこまでできるか、有料に切り替えるべきタイミングまで解説します。'
-pubDate: '2026-03-15'
+pubDate: "2025-11-05"
 category: '動画編集'
 tags: ['動画編集', 'ソフト', 'ツール']
 ---

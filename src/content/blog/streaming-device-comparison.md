@@ -1,7 +1,7 @@
 ---
 title: "ストリーミングデバイス比較｜Fire TV vs Chromecast vs Apple TV"
 description: "Fire TV Stick・Chromecast・Apple TVの3大ストリーミングデバイスを徹底比較。スペック、使い勝手、対応サービス、価格を実体験ベースでレビュー。"
-pubDate: "Apr 03 2026"
+pubDate: "2025-07-15"
 category: "デバイス"
 tags: ["Fire TV Stick", "Chromecast", "Apple TV", "ストリーミング"]
 ---

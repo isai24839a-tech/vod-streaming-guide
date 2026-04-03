@@ -1,7 +1,7 @@
 ---
 title: '【2025年版】Netflix vs Amazonプライムビデオ徹底比較｜どっちが自分に合う？'
 description: 'NetflixとAmazonプライムビデオを料金・コンテンツ・画質・使いやすさで徹底比較。両方契約した僕が本音でどちらを選ぶべきか解説します。'
-pubDate: '2025-05-17'
+pubDate: "2025-04-11"
 category: '動画配信'
 tags: ['VOD', '配信', '比較', 'Netflix', 'Amazonプライム']
 ---

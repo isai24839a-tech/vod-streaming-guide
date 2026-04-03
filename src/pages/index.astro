@@ -236,6 +236,146 @@ const posts = (await getCollection('blog')).sort(
 							<img border="0" width="1" height="1" src={SIDEBAR_ADS[1].pixel} alt="">
 						</div>
 					)}
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					<div class="sidebar-popular">
+						<h4>新着記事</h4>
+						{posts.slice(10, 15).map((post) => (
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						))}
+					</div>
+
+					{SIDEBAR_ADS[0] && (
+						<div class="sidebar-banner">
+							<div class="banner-label">注目</div>
+							<h4>{SIDEBAR_ADS[0].heading}</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
+					)}
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[1] && (
+						<div class="sidebar-cta-gradient">
+							<h4>読者に人気</h4>
+							<p>{SIDEBAR_ADS[1].desc}</p>
+							<a href={SIDEBAR_ADS[1].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[1].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[1].pixel} alt="">
+						</div>
+					)}
+
+					<div class="sidebar-popular">
+						<h4>よく読まれている記事</h4>
+						{posts.slice(0, 3).map((post) => (
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						))}
+					</div>
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[0] && (
+						<div class="sidebar-ad">
+							<h4>あなたへのおすすめ</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
+					)}
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[1] && (
+						<div class="sidebar-banner">
+							<div class="banner-label">PR</div>
+							<h4>{SIDEBAR_ADS[1].heading}</h4>
+							<a href={SIDEBAR_ADS[1].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[1].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[1].pixel} alt="">
+						</div>
+					)}
+
+					<div class="sidebar-popular">
+						<h4>カテゴリ人気記事</h4>
+						{posts.slice(3, 8).map((post) => (
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+						))}
+					</div>
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
+					{SIDEBAR_ADS[0] && (
+						<div class="sidebar-cta-gradient">
+							<h4>見逃してない？</h4>
+							<p>{SIDEBAR_ADS[0].desc}</p>
+							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
+							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
+						</div>
+					)}
+
+					{ADSENSE_ID && (
+						<div class="sidebar-adsense">
+							<div class="ad-label">広告</div>
+							<ins class="adsbygoogle"
+								style="display:block"
+								data-ad-client={ADSENSE_ID}
+								data-ad-slot="auto"
+								data-ad-format="rectangle"
+								data-full-width-responsive="false"></ins>
+						</div>
+					)}
+
 				</div>
 			</aside>
 		</div>

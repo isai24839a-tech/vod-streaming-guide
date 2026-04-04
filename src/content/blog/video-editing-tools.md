@@ -153,6 +153,14 @@ Apple純正の動画編集ソフト。Mac専用という制約はあるけど、
 
 レンダリング（書き出し）速度も速くて、10分の動画の書き出しがPremiere Proの半分くらいの時間で終わることもある。「編集中にストレスを感じたくない」って人にはこれ以上ない選択肢。
 
+<div class="cta-box">
+<h3>DVDで観る選択肢も忘れずに</h3>
+<p>配信終了した作品や未配信のタイトルは、ゲオ宅配レンタルでカバー。月額制プランなら返却期限なし。</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DVIRMY+2D8M+NX736" class="cta-btn" rel="nofollow">ゲオ宅配を試す →</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4B1D5L+DVIRMY+2D8M+NX736" alt="">
+</div>
+
+
 UIもAppleらしく洗練されていて、**Premiere Proほど複雑じゃないけど、CapCutやFilmoraよりは高機能**。ちょうどいいバランス感。
 
 **マグネティックタイムライン**という独自の編集方式が秀逸で、クリップを移動すると他のクリップが自動で詰めてくれる。これに慣れると他のソフトに戻れなくなる人が続出する。

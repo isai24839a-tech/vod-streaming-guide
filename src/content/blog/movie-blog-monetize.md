@@ -118,6 +118,14 @@ A8.net、もしもアフィリエイト、バリューコマースに登録。VO
 8. **評価**: 星評価や点数
 9. **配信情報**: どのVODで見られるか + アフィリエイトリンク
 
+<div class="cta-box">
+<h3>配信にない作品はゲオ宅配レンタル</h3>
+<p>DVDが自宅に届いてポストで返却。配信サービスにない旧作・名作もカバー。取扱タイトル数は日本最大級。</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DVIRMY+2D8M+NX736" class="cta-btn" rel="nofollow">ゲオ宅配レンタルを見る →</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4B1D5L+DVIRMY+2D8M+NX736" alt="">
+</div>
+
+
 ### タイトルの書き方
 
 検索されやすいタイトルのパターン：
@@ -244,6 +252,14 @@ VODアフィリエイトの中でも、単価が高いのは：
 - **映画のスチル風投稿**: 映画のワンシーン（著作権に注意）やロケ地の写真
 - **リール**: 30秒の映画紹介動画
 - **ストーリーズ**: 「今見てる」「見終わった」のリアルタイム投稿
+
+<div class="cta-box">
+<h3>スカパー!で専門チャンネルを楽しもう</h3>
+<p>スポーツ・映画・アニメなど80以上の専門チャンネル。月額基本料429円+チャンネル料金で見放題。初月無料キャンペーン中！</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DW478Q+461Y+6CP0Y" class="cta-btn" rel="nofollow">スカパー!を見てみる →</a>
+<img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4B1D5L+DW478Q+461Y+6CP0Y" alt="">
+</div>
+
 
 ### YouTubeとの連携
 

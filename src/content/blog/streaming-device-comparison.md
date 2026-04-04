@@ -177,6 +177,14 @@ UIの美しさと滑らかさはダントツ。アプリの配置がシンプル
 | Spotify | 対応 | 対応 | 対応 |
 | DAZN | 対応 | 対応 | 対応 |
 
+<div class="cta-box">
+<h3>配信にない作品はゲオ宅配レンタル</h3>
+<p>DVDが自宅に届いてポストで返却。配信サービスにない旧作・名作もカバー。取扱タイトル数は日本最大級。</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DVIRMY+2D8M+NX736" class="cta-btn" rel="nofollow">ゲオ宅配レンタルを見る →</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4B1D5L+DVIRMY+2D8M+NX736" alt="">
+</div>
+
+
 2026年時点では、**主要なVODサービスはどのデバイスでもほぼ全対応**。対応サービスで選ぶ必要はほとんどない。
 
 ---

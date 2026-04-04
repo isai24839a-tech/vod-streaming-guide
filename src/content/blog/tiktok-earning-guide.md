@@ -174,6 +174,14 @@ TikTokはYouTubeと違って、1本の動画にかかる時間が圧倒的に短
 - 競合アカウントを30個以上リサーチ
 - 最初の10本分のネタを書き出す
 
+<div class="cta-box">
+<h3>テレビの楽しさを広げるスカパー!</h3>
+<p>映画、サッカー、野球、アニメ…見たいジャンルだけ選べる。加入月は視聴料0円でお試しOK。</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DW478Q+461Y+6CP0Y" class="cta-btn" rel="nofollow">スカパー!の料金をチェック →</a>
+<img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4B1D5L+DW478Q+461Y+6CP0Y" alt="">
+</div>
+
+
 ### Phase 2：投稿開始（1〜4週間目）
 
 - 1日1本ペースで投稿

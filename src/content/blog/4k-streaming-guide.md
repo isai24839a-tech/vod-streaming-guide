@@ -71,6 +71,14 @@ tags: ["4K", "ストリーミング", "回線速度", "動画配信"]
 | 4K（2160p） | 25Mbps | 約7GB |
 | 4K + Dolby Atmos | 40Mbps | 約10GB |
 
+<div class="cta-box">
+<h3>配信にない作品はゲオ宅配レンタル</h3>
+<p>DVDが自宅に届いてポストで返却。配信サービスにない旧作・名作もカバー。取扱タイトル数は日本最大級。</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DVIRMY+2D8M+NX736" class="cta-btn" rel="nofollow">ゲオ宅配レンタルを見る →</a>
+<img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4B1D5L+DVIRMY+2D8M+NX736" alt="">
+</div>
+
+
 ### 回線速度の確認方法
 
 **方法1: Speedtest by Ookla**
@@ -151,6 +159,14 @@ Wi-Fiは壁や家電の干渉で速度が低下する。テレビの近くまで
 | Apple TV+ | 対応 | 対応 | 対応 | 対応 | 900円/月（追加料金なし） |
 | Hulu | 一部対応 | 一部対応 | 非対応 | 非対応 | 1,026円/月 |
 | YouTube | 対応 | 対応 | 非対応 | 非対応 | 無料/Premium 1,280円/月 |
+
+<div class="cta-box">
+<h3>スカパー!で専門チャンネルを楽しもう</h3>
+<p>スポーツ・映画・アニメなど80以上の専門チャンネル。月額基本料429円+チャンネル料金で見放題。初月無料キャンペーン中！</p>
+<a href="https://px.a8.net/svt/ejp?a8mat=4B1D5L+DW478Q+461Y+6CP0Y" class="cta-btn" rel="nofollow">スカパー!を見てみる →</a>
+<img border="0" width="1" height="1" src="https://www16.a8.net/0.gif?a8mat=4B1D5L+DW478Q+461Y+6CP0Y" alt="">
+</div>
+
 
 ### サービス別の4Kコンテンツの充実度
 

@@ -79,7 +79,7 @@ const posts = (await getCollection('blog')).sort(
 		<div class="page-wrapper">
 			<main>
 			<h1 class="page-title">記事一覧</h1>
-			<p class="page-desc">AIを活用した副業・収益化に関する記事をお届けします</p>
+			<p class="page-desc">動画配信サービスの比較・レビュー記事をお届けします</p>
 			<div class="posts-list">
 				{posts.map((post) => (
 					<a href={`/blog/${post.id}/`} class="post-card">
@@ -190,7 +190,7 @@ const posts = (await getCollection('blog')).sort(
 
 					{SIDEBAR_ADS[0] && (
 						<div class="sidebar-ad">
-							<h4>まだ迷ってる？</h4>
+							<h4>どのサービスにする？</h4>
 							<p>{SIDEBAR_ADS[0].desc}</p>
 							<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">{SIDEBAR_ADS[0].cta}</a>
 							<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">

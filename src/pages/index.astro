@@ -11,7 +11,12 @@ const posts = (await getCollection('blog')).sort(
 );
 
 const siteId = SITE_URL.replace('https://', '').replace('.pages.dev', '');
-const getThumb = (slug: string) => `/images/blog/${siteId}-${slug}-01.jpg`;
+const thumbMap = new Map<string, string>();
+for (const p of posts) {
+	const m = p.body?.match(/!\[.*?\]\((.*?)\)/);
+	thumbMap.set(p.id, m ? m[1] : `/images/blog/${siteId}-${p.id}-01.jpg`);
+}
+const getThumb = (slug: string) => thumbMap.get(slug) || `/images/blog/${siteId}-${slug}-01.jpg`;
 const now = new Date();
 const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 const isNew = (date: Date) => date >= sevenDaysAgo;
@@ -180,6 +185,7 @@ const restPosts = posts.slice(1);
 				</section>
 			</main>
 
+			<!-- Sidebar (unchanged - read from existing file) -->
 			<!-- Sidebar (unchanged - read from existing file) -->
 			<!-- Sidebar -->
 			<aside class="sidebar">

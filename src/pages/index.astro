@@ -4,11 +4,20 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, SIDEBAR_ADS, ADSENSE_ID } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL, SIDEBAR_ADS, ADSENSE_ID } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const siteId = SITE_URL.replace('https://', '').replace('.pages.dev', '');
+const getThumb = (slug: string) => `/images/blog/${siteId}-${slug}-01.jpg`;
+const now = new Date();
+const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+const isNew = (date: Date) => date >= sevenDaysAgo;
+const categories = [...new Set(posts.map(p => p.data.category))];
+const featuredPost = posts[0];
+const restPosts = posts.slice(1);
 ---
 
 <!doctype html>
@@ -28,11 +37,30 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<div class="page-wrapper">
 			<main>
-				<!-- Hero -->
+				<!-- Hero (animated) -->
 				<section class="hero">
-					<h1>あなたの「観たい」<br><span class="gradient-text">ぜんぶ、ここにある</span></h1>
-					<p class="hero-sub">Netflix・U-NEXT・Hulu・Amazon Prime…動画配信サービスの比較からYouTube・TikTok収益化まで徹底解説。</p>
-					<a href="/blog" class="hero-btn">記事を読む →</a>
+					<div class="hero-bg"></div>
+					<div class="hero-content">
+						<h1>あなたの「観たい」<br><span class="gradient-text">ぜんぶ、ここにある</span></h1>
+						<p class="hero-sub">Netflix・U-NEXT・Hulu・Amazon Prime…動画配信サービスの比較からYouTube・TikTok収益化まで徹底解説。</p>
+						<div class="hero-stats">
+							<div class="stat-item">
+								<span class="stat-num">{posts.length}+</span>
+								<span class="stat-label">記事</span>
+							</div>
+							<div class="stat-divider"></div>
+							<div class="stat-item">
+								<span class="stat-num">{categories.length}</span>
+								<span class="stat-label">カテゴリ</span>
+							</div>
+							<div class="stat-divider"></div>
+							<div class="stat-item">
+								<span class="stat-num">毎週</span>
+								<span class="stat-label">更新中</span>
+							</div>
+						</div>
+						<a href="/blog" class="hero-btn">記事を読む →</a>
+					</div>
 				</section>
 
 				<!-- Inline Banner Ad -->
@@ -43,15 +71,42 @@ const posts = (await getCollection('blog')).sort(
 					<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
 				</section>
 
-				<!-- 人気記事ランキング -->
+				<!-- Featured Spotlight -->
+				{featuredPost && (
+					<section class="spotlight">
+						<h2 class="section-title">PICK UP</h2>
+						<a href={`/blog/${featuredPost.id}/`} class="spotlight-card">
+							<div class="spotlight-img">
+								<img src={getThumb(featuredPost.id)} alt="" loading="lazy" onerror="this.style.display='none'" />
+								<div class="spotlight-img-fallback"></div>
+								{isNew(featuredPost.data.pubDate) && <span class="badge-new">NEW</span>}
+							</div>
+							<div class="spotlight-body">
+								<span class="tag">{featuredPost.data.category}</span>
+								<h3>{featuredPost.data.title}</h3>
+								<p>{featuredPost.data.description}</p>
+								<span class="spotlight-date"><FormattedDate date={featuredPost.data.pubDate} /></span>
+							</div>
+						</a>
+					</section>
+				)}
+
+				<!-- Ranking -->
 				<section class="ranking-section">
-					<h2 class="section-title">🔥 人気記事ランキング</h2>
+					<h2 class="section-title">人気記事ランキング</h2>
 					<div class="ranking-list">
 						{posts.slice(0, 3).map((post, i) => (
 							<a href={`/blog/${post.id}/`} class={`ranking-item rank-${i + 1}`}>
 								<span class="ranking-number">{i + 1}</span>
+								<div class="ranking-thumb">
+									<img src={getThumb(post.id)} alt="" loading="lazy" onerror="this.style.display='none'" />
+									<div class="ranking-thumb-fallback"></div>
+								</div>
 								<div class="ranking-content">
-									<span class="tag">{post.data.category}</span>
+									<div class="ranking-meta">
+										<span class="tag">{post.data.category}</span>
+										{isNew(post.data.pubDate) && <span class="badge-new">NEW</span>}
+									</div>
 									<h3>{post.data.title}</h3>
 									<p>{post.data.description}</p>
 								</div>
@@ -76,22 +131,29 @@ const posts = (await getCollection('blog')).sort(
 				<section class="cta-box">
 					<h3>VODサービス選びに迷ったら</h3>
 					<p>各サービスの特徴を徹底比較。あなたにぴったりのサービスが見つかります。</p>
-					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">比較記事を見る →</a>
+					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">おすすめサービスを見る →</a>
 					<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
 				</section>
 
-				<!-- Featured Posts -->
+				<!-- Latest Posts (with thumbnails) -->
 				<section class="posts-section">
 					<h2 class="section-title">最新記事</h2>
 					<div class="posts-grid">
-						{posts.map((post) => (
+						{restPosts.map((post) => (
 							<a href={`/blog/${post.id}/`} class="post-card">
-								<div class="post-meta">
-									<span class="tag">{post.data.category}</span>
-									<FormattedDate date={post.data.pubDate} />
+								<div class="post-card-thumb">
+									<img src={getThumb(post.id)} alt="" loading="lazy" onerror="this.style.display='none'" />
+									<div class="post-card-thumb-fallback"></div>
 								</div>
-								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
+								<div class="post-card-body">
+									<div class="post-meta">
+										<span class="tag">{post.data.category}</span>
+										<FormattedDate date={post.data.pubDate} />
+										{isNew(post.data.pubDate) && <span class="badge-new">NEW</span>}
+									</div>
+									<h3>{post.data.title}</h3>
+									<p>{post.data.description}</p>
+								</div>
 							</a>
 						))}
 					</div>
@@ -113,11 +175,12 @@ const posts = (await getCollection('blog')).sort(
 				<section class="cta-box">
 					<h3>まずは無料体験から</h3>
 					<p>多くのVODサービスは無料トライアルを提供中。リスクゼロで試せます。</p>
-					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">無料体験する →</a>
+					<a href={SIDEBAR_ADS[0].url} class="cta-btn" rel="nofollow">無料で始める →</a>
 					<img border="0" width="1" height="1" src={SIDEBAR_ADS[0].pixel} alt="">
 				</section>
 			</main>
 
+			<!-- Sidebar (unchanged - read from existing file) -->
 			<!-- Sidebar -->
 			<aside class="sidebar">
 				<div class="sidebar-scroll">
@@ -405,9 +468,32 @@ const posts = (await getCollection('blog')).sort(
 </html>
 
 <style>
+	/* === Hero with animated background === */
 	.hero {
+		position: relative;
 		text-align: center;
-		padding: 3em 0 2em;
+		padding: 3.5em 1em 2.5em;
+		overflow: hidden;
+		border-radius: var(--radius);
+		margin-bottom: 0.5em;
+	}
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(-45deg, #6366f1, #8b5cf6, #a855f7, #ec4899, #6366f1);
+		background-size: 400% 400%;
+		animation: heroGradient 12s ease infinite;
+		opacity: 0.08;
+		border-radius: var(--radius);
+	}
+	@keyframes heroGradient {
+		0% { background-position: 0% 50%; }
+		50% { background-position: 100% 50%; }
+		100% { background-position: 0% 50%; }
+	}
+	.hero-content {
+		position: relative;
+		z-index: 1;
 	}
 	.hero h1 {
 		font-size: 2.2em;
@@ -424,8 +510,43 @@ const posts = (await getCollection('blog')).sort(
 	.hero-sub {
 		font-size: 1.1em;
 		color: rgb(var(--gray));
-		margin-bottom: 1.5em;
+		margin-bottom: 1.2em;
 	}
+
+	/* Stats bar in hero */
+	.hero-stats {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5em;
+		margin-bottom: 1.5em;
+		flex-wrap: wrap;
+	}
+	.stat-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.stat-num {
+		font-size: 1.5em;
+		font-weight: 800;
+		background: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.2;
+	}
+	.stat-label {
+		font-size: 0.8em;
+		color: rgb(var(--gray));
+		font-weight: 500;
+	}
+	.stat-divider {
+		width: 1px;
+		height: 2em;
+		background: rgb(var(--gray-light));
+	}
+
 	.hero-btn {
 		display: inline-block;
 		background: var(--accent-gradient);
@@ -440,54 +561,80 @@ const posts = (await getCollection('blog')).sort(
 		transform: translateY(-2px);
 		box-shadow: 0 6px 20px rgba(99,102,241,.4);
 	}
+
+	/* === Featured Spotlight === */
+	.spotlight {
+		margin-bottom: 2em;
+	}
+	.spotlight-card {
+		display: block;
+		background: white;
+		border-radius: var(--radius);
+		box-shadow: var(--box-shadow);
+		overflow: hidden;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		transition: box-shadow .3s, transform .3s;
+	}
+	.spotlight-card:hover {
+		box-shadow: var(--box-shadow-lg);
+		transform: translateY(-4px);
+		color: rgb(var(--gray-dark));
+	}
+	.spotlight-img {
+		position: relative;
+		width: 100%;
+		height: 280px;
+		overflow: hidden;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	}
+	.spotlight-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+	}
+	.spotlight-img-fallback {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+		z-index: -1;
+	}
+	.spotlight-img .badge-new {
+		position: absolute;
+		top: 1em;
+		right: 1em;
+		font-size: 0.85em;
+		padding: 0.3em 0.8em;
+	}
+	.spotlight-body {
+		padding: 1.5em;
+	}
+	.spotlight-body h3 {
+		font-size: 1.3em;
+		margin: 0.5em 0 0.4em;
+		line-height: 1.4;
+	}
+	.spotlight-body p {
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+		margin: 0 0 0.8em;
+		line-height: 1.6;
+	}
+	.spotlight-date {
+		font-size: 0.8em;
+		color: rgb(var(--gray));
+	}
+
+	/* === Section title === */
 	.section-title {
 		font-size: 1.4em;
 		border: none;
 		text-align: center;
 		margin-bottom: 1em;
 	}
-	.posts-grid {
-		display: grid;
-		gap: 1.2em;
-	}
-	.post-card {
-		display: block;
-		background: white;
-		border-radius: var(--radius);
-		padding: 1.5em;
-		box-shadow: var(--box-shadow);
-		text-decoration: none;
-		color: rgb(var(--gray-dark));
-		transition: box-shadow .2s, transform .2s;
-	}
-	.post-card:hover {
-		box-shadow: var(--box-shadow-lg);
-		transform: translateY(-3px);
-		color: rgb(var(--gray-dark));
-	}
-	.post-card h3 {
-		font-size: 1.15em;
-		margin: 0.5em 0 0.3em;
-		line-height: 1.4;
-	}
-	.post-card p {
-		font-size: 0.9em;
-		color: rgb(var(--gray));
-		margin: 0;
-		line-height: 1.6;
-	}
-	.post-meta {
-		display: flex;
-		align-items: center;
-		gap: 0.8em;
-		font-size: 0.8em;
-		color: rgb(var(--gray));
-	}
-	@media (max-width: 720px) {
-		.hero h1 { font-size: 1.6em; }
-		.hero-sub { font-size: 0.95em; }
-	}
 
+	/* === Ranking with thumbnails === */
 	.ranking-section {
 		margin-bottom: 2em;
 	}
@@ -499,10 +646,10 @@ const posts = (await getCollection('blog')).sort(
 	.ranking-item {
 		display: flex;
 		align-items: flex-start;
-		gap: 1em;
+		gap: 0.8em;
 		background: white;
 		border-radius: var(--radius);
-		padding: 1.2em;
+		padding: 1em;
 		box-shadow: var(--box-shadow);
 		text-decoration: none;
 		color: rgb(var(--gray-dark));
@@ -521,8 +668,8 @@ const posts = (await getCollection('blog')).sort(
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.2em;
-		height: 2.2em;
+		width: 2em;
+		height: 2em;
 		border-radius: 50%;
 		font-weight: 800;
 		font-size: 1.1em;
@@ -532,18 +679,133 @@ const posts = (await getCollection('blog')).sort(
 	.rank-1 .ranking-number { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
 	.rank-2 .ranking-number { background: linear-gradient(135deg, #9ca3af, #6b7280); }
 	.rank-3 .ranking-number { background: linear-gradient(135deg, #cd7c2f, #b45309); }
+	.ranking-thumb {
+		position: relative;
+		width: 80px;
+		height: 60px;
+		border-radius: 8px;
+		overflow: hidden;
+		flex-shrink: 0;
+	}
+	.ranking-thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+	}
+	.ranking-thumb-fallback {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, var(--accent-light), var(--accent));
+		z-index: -1;
+	}
+	.ranking-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+	}
 	.ranking-content h3 {
-		font-size: 1.05em;
+		font-size: 1em;
 		margin: 0.3em 0 0.2em;
 		line-height: 1.4;
 	}
 	.ranking-content p {
-		font-size: 0.85em;
+		font-size: 0.82em;
 		color: rgb(var(--gray));
 		margin: 0;
 		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 	.ranking-content .tag {
-		font-size: 0.75em;
+		font-size: 0.72em;
+	}
+
+	/* === Post cards with thumbnails === */
+	.posts-section {
+		margin-bottom: 1em;
+	}
+	.posts-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1em;
+	}
+	.post-card {
+		display: flex;
+		flex-direction: column;
+		background: white;
+		border-radius: var(--radius);
+		box-shadow: var(--box-shadow);
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		transition: box-shadow .2s, transform .2s;
+		overflow: hidden;
+	}
+	.post-card:hover {
+		box-shadow: var(--box-shadow-lg);
+		transform: translateY(-3px);
+		color: rgb(var(--gray-dark));
+	}
+	.post-card-thumb {
+		position: relative;
+		width: 100%;
+		height: 140px;
+		overflow: hidden;
+	}
+	.post-card-thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+	}
+	.post-card-thumb-fallback {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
+		z-index: -1;
+	}
+	.post-card-body {
+		padding: 1em;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.post-card h3 {
+		font-size: 1em;
+		margin: 0.4em 0 0.3em;
+		line-height: 1.4;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.post-card p {
+		font-size: 0.82em;
+		color: rgb(var(--gray));
+		margin: 0;
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.post-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		font-size: 0.78em;
+		color: rgb(var(--gray));
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 720px) {
+		.hero h1 { font-size: 1.6em; }
+		.hero-sub { font-size: 0.95em; }
+		.stat-num { font-size: 1.2em; }
+		.posts-grid { grid-template-columns: 1fr; }
+		.spotlight-img { height: 200px; }
+		.ranking-thumb { width: 60px; height: 45px; }
 	}
 </style>
